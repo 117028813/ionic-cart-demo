@@ -1,0 +1,44 @@
+p {
+  margin: 0;
+}
+
+$textGray: #999;
+$textRed: #e4393c;
+
+page-goods-detail {
+  img {
+    width: 100%;
+  }
+  .amount-and-count {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .amount {
+      font-size: 16px;
+      color: $textRed;
+    }
+    .count {
+      display: flex;
+      align-items: center;
+      a {
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        border: 1px solid $textGray;
+        text-align: center;
+        font-size: 2em;
+        color: $textGray;
+      }
+      input {
+        width: 3em;
+        height: 30px;
+        outline: none;
+        border: 1px solid $textGray;
+        text-align: center;
+      }
+    }
+  }
+}

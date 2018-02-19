@@ -1,0 +1,131 @@
+p {
+  margin: 0;
+}
+
+$textGray: #999;
+$textRed: #e4393c;
+
+.goods-list {
+  padding: 0 10px;
+  .goods {
+    margin-bottom: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+    position: relative;
+    .left {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    .center {
+      width: 75px;
+      height: 75px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      left: 31px;
+      top: 50%;
+      transform: translateY(-50%);
+      img {
+        max-width: 100%;
+        max-height: 100%;
+      }
+    }
+    .right {
+      margin-left: 116px;
+      .name {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+        margin-bottom: 10px;
+        font-weight: bold;
+      }
+      .middle {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+        .amount {
+          color: $textRed;
+        }
+        .num-and-more {
+          color: $textGray;
+          display: flex;
+          align-items: center;
+          a {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            font-size: 2em;
+            color: $textGray;
+          }
+          input {
+            width: 3em;
+            height: 30px;
+            border: none;
+            outline: none;
+            text-align: center;
+          }
+        }
+      }
+      .del-btn {
+        display: block;
+        color: $textGray;
+        text-align: right;
+      }
+    }
+  }
+}
+
+ion-footer {
+  .footer {
+    height: 50px;
+    position: relative;
+    .left {
+      width: 40px;
+      height: 50px;
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: $textGray;
+      font-size: 12px;
+    }
+    .center {
+      height: 50px;
+      line-height: 50px;
+      text-align: right;
+      margin-left: 40px;
+      margin-right: 120px;
+      font-weight: bold;
+      font-size: 16px;
+      span {
+        color: $textRed;
+      }
+    }
+    .right {
+      height: 50px;
+      line-height: 50px;
+      width: 110px;
+      text-align: center;
+      position: absolute;
+      top: 0;
+      right: 0;
+      background-color: $textRed;
+      a {
+        color: #fff;
+        font-weight: bold;
+        font-size: 16px;
+        span {
+          font-weight: normal;
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}

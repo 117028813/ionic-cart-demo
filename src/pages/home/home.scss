@@ -1,3 +1,37 @@
 page-home {
-
+  .goods-list {
+    padding-left: 0;
+    padding-right: 0;
+    .goods-item {
+      border-bottom: 1px solid #ccc;
+      overflow: hidden;
+      .left {
+        width: 125px;
+        height: 125px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        float: left;
+        img {
+          max-width: 125px;
+          max-height: 125px;
+        }
+      }
+      .right {
+        margin-left: 135px;
+        padding: 10px;
+        .name {
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 2;
+          overflow: hidden;
+        }
+        .amount {
+          margin-top: 10px;
+          font-size: 16px;
+          color: #f23030;
+        }
+      }
+    }
+  }
 }
