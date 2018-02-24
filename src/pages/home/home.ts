@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, LoadingController, ModalController } from 'ionic-angular';
 
 import { GoodsProvider } from '../../providers/goods/goods';
+import { UserProvider } from '../../providers/user/user';
 
 /**
  * Generated class for the HomePage page.
@@ -18,13 +19,22 @@ import { GoodsProvider } from '../../providers/goods/goods';
 export class HomePage {
 
   goodsList
+  get username() {
+    if (this.userService.isLogin) {
+      return 'admin'
+    } else {
+      return 'Login'
+    }
+  }
 
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
     private toastCtrl: ToastController,
     private loadingCtrl: LoadingController,
-    private goods: GoodsProvider
+    private modalCtrl: ModalController,
+    private goods: GoodsProvider,
+    private userService: UserProvider
   ) {
   }
 
@@ -49,6 +59,10 @@ export class HomePage {
     this.navCtrl.push('GoodsDetailPage', {
       item: item
     })
+  }
+
+  login() {
+    this.modalCtrl.create('LoginPage').present()
   }
 
 }

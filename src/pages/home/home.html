@@ -8,6 +8,9 @@
 
   <ion-navbar>
     <ion-title>首页</ion-title>
+    <ion-buttons end>
+      <button ion-button clear (click)="login()" [disabled]="username !== 'Login'">{{username}}</button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>

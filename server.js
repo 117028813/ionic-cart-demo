@@ -56,6 +56,25 @@ app.post('/deleteGoods', (req, res) => {
   })
 })
 
+app.post('/login', (req, res) => {
+  let body = ''
+  req.on('data', chunk => body += chunk)
+  req.on('end', () => {
+    body = JSON.parse(body)
+    if (body.name === 'admin' && body.password === '123456') {
+      res.send({
+        result: 1,
+        message: '登录成功'
+      })
+    } else {
+      res.send({
+        result: 0,
+        message: '用户名或密码错误'
+      })
+    }
+  })
+})
+
 app.listen(3000, () => {
   console.log('http://localhost:3000')
 })

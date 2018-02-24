@@ -3,20 +3,22 @@ import { Injectable } from '@angular/core';
 import { ApiProvider } from '../api/api';
 
 /*
-  Generated class for the GoodsProvider provider.
+  Generated class for the UserProvider provider.
 
   See https://angular.io/guide/dependency-injection for more info on providers
   and Angular DI.
 */
 @Injectable()
-export class GoodsProvider {
+export class UserProvider {
+
+  isLogin = false
 
   constructor(public http: HttpClient, private api: ApiProvider) {
-    console.log('Hello GoodsProvider Provider');
+    console.log('Hello UserProvider Provider');
   }
 
-  getGoods() {
-    return this.http.get(this.api.url + '/goods')
+  login(user) {
+    return this.http.post(this.api.url + '/login', user)
   }
 
 }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, LoadingController, ModalController } from 'ionic-angular';
 import { CartProvider } from '../../providers/cart/cart';
+import { UserProvider } from '../../providers/user/user';
 
 /**
  * Generated class for the CartPage page.
@@ -27,11 +28,17 @@ export class CartPage {
     public navParams: NavParams,
     private toastCtrl: ToastController,
     private loadingCtrl: LoadingController,
-    private cart: CartProvider
+    private modalCtrl: ModalController,
+    private cart: CartProvider,
+    private userService: UserProvider
   ) {
   }
 
   ionViewDidEnter() {
+    if (!this.userService.isLogin) {
+      this.modalCtrl.create('LoginPage').present()
+    }
+
     let loading = this.loadingCtrl.create({
       content: '请求数据中...'
     })
@@ -58,6 +65,7 @@ export class CartPage {
     }
     if (this.goods && this.goods.length === 0) {
       this.isEmpty = true
+      this.isCheckedAll = false
     } else {
       this.isEmpty = false
     }
@@ -111,7 +119,7 @@ export class CartPage {
       return val.id != item.id
     })
     this.computeTotalAmount()
-    this.cart.deleteGoods(JSON.stringify(item)).subscribe(data => {
+    this.cart.deleteGoods(item).subscribe(data => {
       this.goods = data
       this.toastCtrl.create({
         message: '删除成功',
@@ -123,12 +131,17 @@ export class CartPage {
   computeTotalAmount() {
     this.totalCount = 0
     this.totalAmount = 0
-    this.goods.forEach((val, ind, arr) => {
-      if (val.isChecked) {
-        this.totalCount += +val.count
-        this.totalAmount += val.amount * val.count
-      }
-    })
+    // this.goods.forEach((val, ind, arr) => {
+    //   if (val.isChecked) {
+    //     this.totalCount += +val.count
+    //     this.totalAmount += val.amount * val.count
+    //   }
+    // })
+    
+    const isChecked = this.goods.filter(item => item.isChecked)
+    const totalSum = arr => arr.reduce((sum, val) => sum + val, 0)
+    this.totalCount = totalSum(isChecked.map(item => item.count))
+    this.totalAmount = totalSum(isChecked.map(item => item.count * item.amount))
   }
 
 }

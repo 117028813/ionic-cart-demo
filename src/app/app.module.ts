@@ -8,6 +8,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import { GoodsProvider } from '../providers/goods/goods';
 import { CartProvider } from '../providers/cart/cart';
+import { ApiProvider } from '../providers/api/api';
+import { UserProvider } from '../providers/user/user';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { CartProvider } from '../providers/cart/cart';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     GoodsProvider,
-    CartProvider
+    CartProvider,
+    ApiProvider,
+    UserProvider
   ]
 })
 export class AppModule {}
