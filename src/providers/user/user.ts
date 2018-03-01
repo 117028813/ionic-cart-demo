@@ -14,7 +14,6 @@ export class UserProvider {
   isLogin = false
 
   constructor(public http: HttpClient, private api: ApiProvider) {
-    console.log('Hello UserProvider Provider');
   }
 
   login(user) {

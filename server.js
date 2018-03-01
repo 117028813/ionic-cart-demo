@@ -36,7 +36,8 @@ app.post('/addToCart', (req, res) => {
   req.on('data', chunk => body += chunk)
   req.on('end', () => {
     body = JSON.parse(body)
-    cartGoods = cartGoods.concat(body)
+    // cartGoods = cartGoods.concat(body)
+    cartGoods = [...cartGoods, body]
     ;(function foo() {
       for (let i = 0; i < cartGoods.length; i++) {
         for (let j = i + 1; j < cartGoods.length; j++) {
@@ -78,7 +79,8 @@ app.post('/login', (req, res) => {
   req.on('data', chunk => body += chunk)
   req.on('end', () => {
     body = JSON.parse(body)
-    if (body.name === 'admin' && body.password === '123456') {
+    const {name, password} = body
+    if (name === 'admin' && password === '123456') {
       res.send({
         result: 1,
         message: '登录成功'

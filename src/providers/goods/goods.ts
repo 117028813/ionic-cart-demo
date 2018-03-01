@@ -12,7 +12,6 @@ import { ApiProvider } from '../api/api';
 export class GoodsProvider {
 
   constructor(public http: HttpClient, private api: ApiProvider) {
-    console.log('Hello GoodsProvider Provider');
   }
 
   getGoods() {
