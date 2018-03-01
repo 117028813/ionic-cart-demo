@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController, ToastController } from 'ionic-angular';
 import { UserProvider } from '../../providers/user/user';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 
 /**
  * Generated class for the LoginPage page.
@@ -26,6 +27,7 @@ export class LoginPage {
     public navParams: NavParams,
     private viewCtrl: ViewController,
     private toastCtrl: ToastController,
+    private barcodeScanner: BarcodeScanner,
     private userService: UserProvider
   ) {
   }
@@ -39,7 +41,23 @@ export class LoginPage {
   }
 
   onSubmit() {
-    this.userService.login(this.user).subscribe(data => {
+    this.login(this.user)
+  }
+
+  scan() {
+    console.log('scan')
+    this.barcodeScanner.scan().then(barcodeData => {
+      const {text} = barcodeData
+      this.user.name = /\w+(?=&)/.exec(text)[0]
+      this.user.password = /\w+$/.exec(text)[0]
+      this.login(this.user)
+    }, err => {
+      alert(err)
+    })
+  }
+
+  login(user) {
+    this.userService.login(user).subscribe(data => {
       this.user.name = ''
       this.user.password = ''
       if (data['result'] === 1) {

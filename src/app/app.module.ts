@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { BarcodeScanner } from "@ionic-native/barcode-scanner";
 
 import { MyApp } from './app.component';
 import { GoodsProvider } from '../providers/goods/goods';
@@ -30,6 +31,7 @@ import { UserProvider } from '../providers/user/user';
   providers: [
     StatusBar,
     SplashScreen,
+    BarcodeScanner,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     GoodsProvider,
     CartProvider,
