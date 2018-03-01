@@ -18,7 +18,9 @@ import { UserProvider } from '../../providers/user/user';
 })
 export class HomePage {
 
-  goodsList
+  goodsList = []
+  page = 1
+  noMoreData = false
   get username() {
     if (this.userService.isLogin) {
       return 'admin'
@@ -43,15 +45,26 @@ export class HomePage {
       content: '数据请求中...'
     })
     loading.present()
-    this.goods.getGoods().subscribe(data => {
+    this.goods.getGoodsPaging(this.page).subscribe(data => {
       loading.dismiss()
-      this.goodsList = data
+      this.goodsList = this.goods.concatGoods(this.goodsList, data)
     }, err => {
       loading.dismiss()
       this.toastCtrl.create({
         message: '数据请求失败',
         duration: 1000
       }).present()
+    })
+  }
+
+  onInfinite(event) {
+    this.goods.getGoodsPaging(++this.page).subscribe(data => {
+      if (data['length'] === 0) {
+        event.enable(false)
+        this.noMoreData = true
+      }
+      event.complete()
+      this.goodsList = this.goods.concatGoods(this.goodsList, data)
     })
   }
 

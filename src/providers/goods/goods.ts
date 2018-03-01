@@ -19,4 +19,12 @@ export class GoodsProvider {
     return this.http.get(this.api.url + '/goods')
   }
 
+  getGoodsPaging(page) {
+    return this.http.post(this.api.url + '/goods', {page: page})
+  }
+
+  concatGoods(oldGoods, newGoods) {
+    return [...oldGoods, ...newGoods]
+  }
+
 }

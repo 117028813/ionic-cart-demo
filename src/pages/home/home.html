@@ -28,4 +28,10 @@
       </div>
     </li>
   </ul>
+
+  <p text-center margin-bottom *ngIf="noMoreData" class="no-more-data">没有更多数据了</p>
+
+  <ion-infinite-scroll (ionInfinite)="onInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

@@ -4,10 +4,27 @@ const fs = require('fs')
 
 app.use(express.static('./www'))
 
+const goods = JSON.parse(fs.readFileSync('./goods.json', 'utf-8'))
+
 app.get('/goods', (req, res) => {
   // res.set({'Access-Control-Allow-Origin': '*'})
   fs.readFile('./goods.json', 'utf-8', (err, data) => {
     res.send(data)
+  })
+})
+
+app.post('/goods', (req, res) => {
+  let body = ''
+  req.on('data', chunk => body += chunk)
+  req.on('end', () => {
+    body = JSON.parse(body)
+    if (body.page) {
+      let page = Number.parseInt(body.page)
+      let resData = goods.filter((val, ind, arr) => {
+        return ind >= (5 * (page - 1)) && ind < (5 * (page - 1)) + 5
+      })
+      res.send(resData)
+    }
   })
 })
 
