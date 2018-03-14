@@ -38,6 +38,8 @@ app.post('/addToCart', (req, res) => {
     body = JSON.parse(body)
     // cartGoods = cartGoods.concat(body)
     cartGoods = [...cartGoods, body]
+    // 如果添加到购物车的商品在当前购物车内已有了，
+    // 就只把新添加的数量加到购物车内已有商品的数量上
     ;(function foo() {
       for (let i = 0; i < cartGoods.length; i++) {
         for (let j = i + 1; j < cartGoods.length; j++) {

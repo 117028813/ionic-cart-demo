@@ -45,7 +45,6 @@ export class LoginPage {
   }
 
   scan() {
-    console.log('scan')
     this.barcodeScanner.scan().then(barcodeData => {
       const {text} = barcodeData
       this.user.name = /\w+(?=&)/.exec(text)[0]
