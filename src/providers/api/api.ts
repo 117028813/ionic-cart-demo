@@ -17,4 +17,20 @@ export class ApiProvider {
     console.log('Hello ApiProvider Provider');
   }
 
+  get(path, options={}) {
+    if (path.startsWith('http')) {
+      return this.http.get(path, options)
+    } else {
+      return this.http.get(this.url + path, options)
+    }
+  }
+
+  post(path, body, options={}) {
+    if (path.startsWith('http')) {
+      return this.http.post(path, body, options)
+    } else {
+      return this.http.post(this.url + path, body, options)
+    }
+  }
+
 }

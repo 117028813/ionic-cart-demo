@@ -16,15 +16,15 @@ export class CartProvider {
   }
 
   addToCart(item) {
-    return this.http.post(this.api.url + '/addToCart', item)
+    return this.api.post('/addToCart', item)
   }
 
   cartGoods() {
-    return this.http.get(this.api.url + '/cartGoods')
+    return this.api.get('/cartGoods')
   }
 
   deleteGoods(item) {
-    return this.http.post(this.api.url + '/deleteGoods', item)
+    return this.api.post('/deleteGoods', item)
   }
 
 }

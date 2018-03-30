@@ -17,7 +17,7 @@ export class UserProvider {
   }
 
   login(user) {
-    return this.http.post(this.api.url + '/login', user)
+    return this.api.post('/login', user)
   }
 
 }
